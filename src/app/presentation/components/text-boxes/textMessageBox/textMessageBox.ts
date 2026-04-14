@@ -11,7 +11,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms'
 export class TextMessageBox {
 
   @Input() placeholder: string = "";
-  @Input() disableCorrectrions: boolean = false;
+  @Input() disableCorrections: boolean = false;
 
   @Output() onMessage = new EventEmitter<string>();
 
@@ -25,7 +25,6 @@ export class TextMessageBox {
     if (this.form.invalid) return;
 
     const {prompt} = this.form.value;
-    console.log({prompt})
 
     this.onMessage.emit( prompt ?? "");
     this.form.reset();

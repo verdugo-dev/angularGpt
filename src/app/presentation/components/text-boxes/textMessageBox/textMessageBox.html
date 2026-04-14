@@ -3,13 +3,21 @@
   <div class="grow">
     <div class="relative w-full">
 
-      <input formControlName="prompt" type="text" autofocus class="flex w-full border rounded-xl text-gray-800 focus:outline-none focus:border-indigo-300 pl-4 h-10" placeholder="Mensaje...">
+      <input
+        formControlName="prompt"
+        type="text"
+        autofocus
+        class="flex w-full border rounded-xl text-gray-800 focus:outline-none focus:border-indigo-300 pl-4 h-10"
+        placeholder="Mensaje..."
+        [autocomplete]=" disableCorrections ? 'on' : 'off'"
+        [spellcheck]=" disableCorrections ? 'on' : 'off'"
+      >
 
     </div>
   </div>
 
   <div class="ml-4">
-      <button class="btn-primary" type="submit">
+      <button class="btn-primary" type="submit" [disabled]="form.invalid">
         <span class="mr-2">Send</span>
         <i class="fa-regular fa-paper-plane"></i>
       </button>

@@ -11,5 +11,8 @@ import { TypingLoader } from '@components/typingLoader/typingLoader';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class OrtographyPage {
+  handleMessage(prompt: string) {
+    console.log({prompt})
+  }
 
 }
