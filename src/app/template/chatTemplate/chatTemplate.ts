@@ -1,41 +1,35 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ChatMessage } from '@components/chat-bubbles/chatMessage/chatMessage';
 import { MyMessage } from '@components/chat-bubbles/myMessage/myMessage';
-import { TextMessageBox } from '@components/text-boxes/textMessageBox/textMessageBox';
-import { TextMessageBoxFile, TextMessageEvent } from '@components/text-boxes/textMessageBoxFile/textMessageBoxFile';
+import { TextMessageEvent } from '@components/text-boxes/textMessageBoxFile/textMessageBoxFile';
 import { TextMessageBoxEvent, TextMessageBoxSelect } from '@components/text-boxes/textMessageBoxSelect/textMessageBoxSelect';
 import { TypingLoader } from '@components/typingLoader/typingLoader';
 import { Message } from 'src/app/interfaces/message.interface';
-import { OpenAiService } from '../../services/openai.service';
+import { OpenAiService } from 'src/app/presentation/services/openai.service';
+import { TextMessageBox } from "@components/text-boxes/textMessageBox/textMessageBox";
 
 @Component({
-  selector: 'app-ortography-page',
+  selector: 'app-chat-template',
   imports: [
     ChatMessage,
     MyMessage,
     TypingLoader,
-    // TextMessageBox,
-    // TextMessageBoxFile,
-    TextMessageBoxSelect
-  ],
-  templateUrl: './ortographyPage.html',
+    ReactiveFormsModule,
+    // TextMessageBoxSelect,
+    TextMessageBox
+],
+  templateUrl: './chatTemplate.html',
+  styleUrl: './chatTemplate.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class OrtographyPage {
-  public messages = signal<Message[]>([{text: 'Hola mundo', isGpt: false }]);
+export class ChatTemplate {
+  public messages = signal<Message[]>([]);
   public isLoading = signal(false);
   public openAiService = inject(OpenAiService);
 
   handleMessage(prompt: string) {
     console.log({prompt})
-  }
-
-  handleMessageWithFile({prompt, file}: TextMessageEvent) {
-    console.log({prompt, file})
-  }
-
-  handleMessageWithSelect(event: TextMessageBoxEvent) {
-    console.log(event)
   }
 
 
